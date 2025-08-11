@@ -48,7 +48,7 @@ def submit():
     if username =='soumya123' and password=='pass':
         return render_template('welcome.html', name=username)
     else:
-        return 'Invalid credential'
+        return 'Invalid Credential'
 
     
 if __name__ == '__main__':
