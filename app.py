@@ -1,7 +1,7 @@
-from flask import Flask , redirect,url_for
+from flask import Flask , redirect,url_for,request,render_template
 
 app=Flask(__name__)
-@app.route('/')
+@app.route('/home')
 def home():
     return "This is my first Flask webpage!"
 
@@ -35,6 +35,21 @@ def check(name1):
         return redirect(url_for('hii_admin'))
     else:
         return redirect(url_for('blog_post',name=name1))
+    
+@app.route('/')
+def login():
+   return render_template("login.html")
 
+@app.route('/submit',methods = ['POST'])
+def submit():
+    username=request.form.get("username")
+    password=request.form.get("password")
+
+    if username =='soumya123' and password=='pass':
+        return render_template('welcome.html', name=username)
+    else:
+        return 'Invalid credential'
+
+    
 if __name__ == '__main__':
     app.run(debug=True)
